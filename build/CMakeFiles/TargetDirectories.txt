@@ -1,0 +1,3 @@
+C:/cpp/second/build/CMakeFiles/SECOND.dir
+C:/cpp/second/build/CMakeFiles/edit_cache.dir
+C:/cpp/second/build/CMakeFiles/rebuild_cache.dir
