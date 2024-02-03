@@ -103,10 +103,11 @@ void tenor_operator_ordered() {
     auto t4 = Tenor {"Mar2025"};
     auto t5 = Tenor {"Jan2026"};
 
+    //populate the map
     map<Tenor, int> mp;
     mp[t4] = 12;
     mp[t5] = 22;
-    mp[t1] = 1; //insert
+    mp[t1] = 1; 
     mp[t3] = 18; 
     mp[t2] = 2;
 
