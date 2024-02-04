@@ -13,8 +13,8 @@ int main() {
         cout << "DEBUGGING"<< endl;
   #endif
   std::cout << "Anatoly says Hello, C++ " << __cplusplus << std::endl;
-  // playground();
-  // mut_ref();
-  // new_operator();
+  playground();
+  mut_ref();
+  new_operator();
   tenor_operator_ordered();
 }

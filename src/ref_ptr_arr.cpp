@@ -64,6 +64,19 @@ int count_x(const char* p, char x)
     return count;
 }
 
+// we declare a local variable similar to for(auto x: vec) statement
+void variable_in_if(vector<int>& v)
+{
+    if (auto n = v.size(); n!=0) {
+    // ... we get here if n!=0 ...
+    }
+    if (auto n = v.size()) {
+    // ... we get here ALSO if n!=0 ...
+    }
+// ...
+}
+
+
 
 
 void playground() {
@@ -77,8 +90,15 @@ void playground() {
     void* invalid = nullptr;
     // Pointer vs ref
     //https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable
-    // In declarations, [ ] means ‘‘array of’’ and ∗ means ‘‘pointer to.’’
-    //In an expression ∗ means ‘‘contents of’’ and prefix unary & means ‘‘address of.’’
+    // In declarations, [ ] means ‘‘array of’’ and ∗ means ‘‘pointer to.’’ and & means ‘‘reference to.’’
+
+    // A reference is similar to a pointer,
+    // except that you don’t need to use a prefix ∗ to access the value referred to by the reference. Also, a
+    // reference cannot be made to refer to a different object after its initialization.
+    // References are particularly useful for specifying function arguments. 
+    // To access the value pointed to by a pointer, you use ∗; that is implicitly done for a reference.
+
+    //In an expression ∗ means ‘‘contents of’’ and & means ‘‘address of.’’
     //In a declaration, the unary suffix & means ‘‘reference to.’’
 
     // Размер указателя, например, 4 - это количество
