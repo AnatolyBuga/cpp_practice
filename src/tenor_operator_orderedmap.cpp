@@ -9,7 +9,6 @@ using namespace std;
 
 // Parses eg "1Y3M" into (1, 3)
 std::pair<int, int> extractNumbers(const std::string& input) {
-    // Alternatively, could also work with stream
     int beforeY = 0;
     int beforeM = 0;
     
@@ -87,7 +86,6 @@ struct Tenor {
         }
 
         // must satisfy strict weak ordering
-        // https://stackoverflow.com/questions/979759/how-to-define-operator-on-an-n-tuple-that-satisfies-a-strict-weak-ordering
         bool operator<(Tenor const& obj) const
         {    
             auto m_self = label_to_months(_label);    
