@@ -2,10 +2,13 @@ cmake_minimum_required(VERSION 3.24)
 
 project(UDFS LANGUAGES CXX)
 
-# add_compile_options(-std=c++23)
+# file(GLOB SOURCES src/*.cpp) <- this didn't work
 
-# add_library(${PROJECT_NAME} GLOB src/udfs_main.cpp)
-file(GLOB SOURCES src/*.cpp)
+set(SOURCES
+    src/vector.cpp
+    src/udfs_main.cpp
+)
+
 add_library(${PROJECT_NAME} ${SOURCES})
 add_library(sub::lib1 ALIAS ${PROJECT_NAME})
 

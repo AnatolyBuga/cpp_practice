@@ -21,4 +21,5 @@ int main() {
 
   udfslib mylib;
   mylib.print();
+  Vector1 v;
 }
