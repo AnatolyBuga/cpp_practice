@@ -2,6 +2,7 @@
 #include "structs_simple.hpp"
 #include "lib.hpp"
 #include "tenor_operator_orderedmap.hpp"
+#include "udfs/vector.hpp"
 // #define DEBUG see -DDEBUG
 // namespace defines a space for particular function names
 // so we can call functions from std like std::funcA
@@ -17,4 +18,7 @@ int main() {
   mut_ref();
   new_operator();
   tenor_operator_ordered();
+
+  udfslib mylib;
+  mylib.print();
 }
