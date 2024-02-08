@@ -10,4 +10,5 @@ add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_FILES})
 
 target_link_libraries(${PROJECT_NAME}
     sub::lib1
+    sub::lib2
 )

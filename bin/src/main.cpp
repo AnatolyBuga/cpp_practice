@@ -3,6 +3,7 @@
 #include "lib.hpp"
 #include "tenor_operator_orderedmap.hpp"
 #include "udfs/vector.hpp"
+#include "interviews/queue.hpp"
 // #define DEBUG see -DDEBUG
 // namespace defines a space for particular function names
 // so we can call functions from std like std::funcA
@@ -14,12 +15,15 @@ int main() {
         cout << "DEBUGGING"<< endl;
   #endif
   std::cout << "Anatoly says Hello, C++ " << __cplusplus << std::endl;
-  playground();
-  mut_ref();
-  new_operator();
-  tenor_operator_ordered();
+  // playground();
+  // mut_ref();
+  // new_operator();
+  // tenor_operator_ordered();
 
-  udfslib mylib;
-  mylib.print();
-  Vector1 v;
+  // udfslib mylib;
+  // mylib.print();
+  // Vector1 v;
+
+  // _queue();
+  move_copy();
 }

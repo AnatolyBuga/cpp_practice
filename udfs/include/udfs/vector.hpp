@@ -17,6 +17,8 @@ struct Vector1 {
     int sz; // number of elements
 };
 
+enum class Color { red, blue, green };
+
 class Vector {
 public:
     // https://stackoverflow.com/questions/2785612/c-what-does-the-colon-after-a-constructor-mean
