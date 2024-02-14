@@ -1,12 +1,18 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.28)
 
 project(UDFS LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 23)
+
+add_compile_options(-std=c++23 -fmodules-ts)
 
 # file(GLOB SOURCES src/*.cpp) <- this didn't work
 
 set(SOURCES
     src/vector.cpp
     src/udfs_main.cpp
+    src/enum.cpp
+    src/unions.cpp
 )
 
 add_library(${PROJECT_NAME} ${SOURCES})

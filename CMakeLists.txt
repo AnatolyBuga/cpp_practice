@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.28)
 project(BOOK LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 23)
+add_compile_options(-std=c++23 -fmodules-ts)
 add_subdirectory(bin)
 add_subdirectory(udfs)
 add_subdirectory(interviews)

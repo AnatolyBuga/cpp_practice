@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdint>
 #include <array>
+#include <iterator> // for std::begin and std::end
 using namespace std;
 
 int square(int value) {
@@ -99,7 +100,6 @@ void playground() {
     // To access the value pointed to by a pointer, you use ∗; that is implicitly done for a reference.
 
     //In an expression ∗ means ‘‘contents of’’ and & means ‘‘address of.’’
-    //In a declaration, the unary suffix & means ‘‘reference to.’’
 
     // Размер указателя, например, 4 - это количество
     // байт необходимых для размещения адреса
@@ -149,20 +149,26 @@ void playground() {
                             // if c1/c2 is short* then 8bytes = 8/2=4 shorts 
     cout << "d2: " << d2 << endl;
 
-    //free(&x);
-    // size of an array must be constexpr
-    // this is on heap: https://stackoverflow.com/questions/1598397/creating-array-of-objects-on-the-stack-and-heap
+    //On stack
+    int udt[10]; // uninitialised
     int dt[10] = {5,2,3,4}; // dt is a pointer to the first element of the array
     cout << "dt: " << *dt << endl; // Note
-    int z = dt[9];
-    cout << "y: " << z << endl;
+    int z = dt[9]; // copied
+    cout << "z: " << z << endl;
     
-    // this is on stack (because of int*)
-    int* data = new int[10]; // new keyword allocates on heap - and you MUST call delete
-    int ii = data[15]; // Undefined behaviour?
-    cout << "ii: " << ii << endl;
+    cout << "DATA" << endl;
+    int n = 5;
+    // This allocates to heap
+    int* data = new int[n]; // new keyword allocates on heap - and you MUST call delete
+    for (int i=0; i<n; ++i) {
+        data[i] = i;
+    };
+    for (int i = 0; i < n; ++i ) { // has to be span, can do range based on array
+        std::cout << data[i] << " ";
+    }
+    delete[] data;
 
-
+    cout << endl;
     int ar[20] = { 1, 2, 3 };
     int* j = ar;
     using array = int*; //array is just whenever we type int*

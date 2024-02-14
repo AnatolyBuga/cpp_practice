@@ -11,8 +11,6 @@ public:
 int move_copy() {
     MyClass obj1; // Create an object using the default constructor
 
-    
-
     // Move the object to another object
     MyClass obj2 = std::move(obj1);
 

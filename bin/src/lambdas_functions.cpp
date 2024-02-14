@@ -34,4 +34,7 @@ void lambdas_functions() {
     FPointer ptr = square;
     int res = ptr(10);
     cout << "res: " << res << endl;
+
+    double (&funcRef)(double) = trippo;
+    cout << "trippo 2: " << funcRef(2) << endl;
 }
