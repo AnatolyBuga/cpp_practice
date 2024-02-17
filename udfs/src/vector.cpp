@@ -1,10 +1,17 @@
 // module;
-
+#include <expected>
 #include <iostream>
+#include <stdexcept>
 //https://stackoverflow.com/questions/65384277/error-failed-to-read-compiled-module-no-such-file-or-directory
 #include "udfs/vector.hpp"
 
 // export module MyVectorModule;
+
+enum class MyError
+{
+    invalid_input,
+    overflow
+};
 
 class MyVector {
 public:
@@ -14,7 +21,11 @@ public:
     // default: https://stackoverflow.com/questions/20828907/the-new-syntax-default-in-c11
     // MyVector(int s) :elem{new double[s]}, sz{s} { std::cout << "Default constructor called" << std::endl; } // construct a Vector
     MyVector(int s);
-    double& operator[](int i) { return elem[i]; } // element access: subscripting
+    auto operator[](int i) -> double& { 
+        if (i<0 || i>size()) throw std::out_of_range{"Anatoly's Vector operator []"};
+        return elem[i];
+        } // element access: subscripting
+    auto my_new(int s) -> std::expected<MyVector, MyError>;
     int size(); // { return sz; } defined outside(below)
 private:
     double* elem; // pointer to the elements
@@ -27,8 +38,11 @@ MyVector::MyVector(int s)
     std::cout << "Default constructor called" << std::endl;
 }
 
+auto MyVector::my_new(int s) -> std::expected<MyVector, MyError> { // trailing return type
+    return MyVector(10);
+};
 
-int MyVector::size() {
+auto MyVector::size() -> int { // trailing return type
     return sz;
 };
 // new allocates to heap and MUST delete
@@ -51,5 +65,11 @@ void f(Vector1 v, Vector1& rv, Vector1* pv)
 
 void vector_playground() {
     std::cout << "Inside Vector Playground" << std::endl;
+    MyVector v(5);
+    try {
+        v[10];
+    } catch(const std::out_of_range& err) {
+        std::cerr << err.what() << '\n';
+    }
     
 }

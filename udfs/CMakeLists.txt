@@ -4,7 +4,7 @@ project(UDFS LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_compile_options(-std=c++23 -fmodules-ts)
+add_compile_options(-std=c++23)
 
 # file(GLOB SOURCES src/*.cpp) <- this didn't work
 

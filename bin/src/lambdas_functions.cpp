@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "lib.hpp"
 using namespace std;
 
@@ -6,6 +7,10 @@ using namespace std;
 constexpr double trippo(double x) {return x*x*x;}; 
 // at compile time ONLY
 consteval double trippo2(double x) {return x*x*x;};
+
+auto to_be_destructed() -> std::tuple<int, int> {
+    return {1,2};
+}
 
 void lambdas_functions() {
     // value of constexpr is calculated at compile time by compiler
@@ -37,4 +42,8 @@ void lambdas_functions() {
 
     double (&funcRef)(double) = trippo;
     cout << "trippo 2: " << funcRef(2) << endl;
+
+    auto [n,v] = to_be_destructed();
+
+
 }

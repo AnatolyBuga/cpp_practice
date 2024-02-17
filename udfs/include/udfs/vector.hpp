@@ -9,7 +9,7 @@ public:
 };
 #endif
 
-// void vector_playground();
+void vector_playground();
 void enum_playground();
 void union_playground();
 
