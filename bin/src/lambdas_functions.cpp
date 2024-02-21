@@ -8,7 +8,8 @@ constexpr double trippo(double x) {return x*x*x;};
 // at compile time ONLY
 consteval double trippo2(double x) {return x*x*x;};
 
-auto to_be_destructed() -> std::tuple<int, int> {
+// noexcept - function which never throws
+auto to_be_destructed() noexcept -> std::tuple<int, int> {
     return {1,2};
 }
 

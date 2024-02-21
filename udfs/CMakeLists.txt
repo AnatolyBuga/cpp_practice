@@ -10,9 +10,11 @@ add_compile_options(-std=c++23)
 
 set(SOURCES
     src/vector.cpp
+    src/vector_errors.cpp
     src/udfs_main.cpp
     src/enum.cpp
     src/unions.cpp
+    src/complex.cpp
 )
 
 add_library(${PROJECT_NAME} ${SOURCES})

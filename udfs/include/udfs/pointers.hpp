@@ -214,6 +214,6 @@ void MutCond() {
     auto MyOtherFunction = [&]() {
         std::unique_lock<std::mutex> lock(mu);
         condition.wait(lock); //Wait for MyFunction to finish, a lambda can be passed also to protects against spurious wake up e.g (lock,[](){return *some condition*})
-        lock.unlock(); // might not needed since unique lock 
+        lock.unlock(); // might not be needed since unique lock 
     };
 }

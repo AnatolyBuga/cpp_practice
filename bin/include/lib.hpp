@@ -7,3 +7,4 @@ int square(int);
 // void addOne(int *numPtr);
 void mut_ref();
 void playground();
+void openmp_tut();

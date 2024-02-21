@@ -25,9 +25,9 @@ int main() {
   // new_operator();
   // tenor_operator_ordered();
 
-  udfslib mylib;
-  mylib.print();
-  Vector1 v;
+  // udfslib mylib;
+  // mylib.print();
+  // Vector1 v;
 
   // _queue();
   // move_copy();
@@ -35,4 +35,5 @@ int main() {
   // run_fin();
   // run_subarrmaxsum();
   // run_max_profit();
+  openmp_tut();
 }
