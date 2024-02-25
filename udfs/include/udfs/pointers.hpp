@@ -3,7 +3,7 @@
 #include <vector>
 #include <thread>
 #include <atomic>
-#include<mutex>
+#include <mutex>
 #include <condition_variable>
 
 void AdvancedSharedPtr();                   // Forward reference
@@ -87,50 +87,50 @@ void Basics()
 void AdvancedSharedPtr() 
 {
     // 1. Weak pointers
-    // std::shared_ptr<Base> sp1 = std::make_shared<Base>();
-    // std::weak_ptr<Base> wp1 = sp1; // weak_ptr does not contribute to ref count
+    std::shared_ptr<Base> sp1 = std::make_shared<Base>();
+    std::weak_ptr<Base> wp1 = sp1; // weak_ptr does not contribute to ref count
 
-    // if (std::shared_ptr<Base> locked = wp1.lock()) {
-    //     locked->speak(); // I am Base
-    // }
+    if (std::shared_ptr<Base> locked = wp1.lock()) {
+        locked->speak(); // I am Base
+    }
 
-    // sp1.reset(); // Base destroyed
+    sp1.reset(); // Base destroyed
 
-    // if (wp1.expired()) {
-    //     std::cout << "The weak_ptr is expired." << std::endl;
-    // }
+    if (wp1.expired()) {
+        std::cout << "The weak_ptr is expired." << std::endl;
+    }
 
     // 2. Aliasing constructor
-    // std::shared_ptr<Base> sp2 = std::make_shared<Derived>();
-    // std::shared_ptr<Base> sp2_alias(sp2, sp2.get());
-    // sp2_alias->speak();
-    // std::cout << "sp2 use_count: " << sp2.use_count() << std::endl;
+    std::shared_ptr<Base> sp2 = std::make_shared<Derived>();
+    std::shared_ptr<Base> sp2_alias(sp2, sp2.get());
+    sp2_alias->speak();
+    std::cout << "sp2 use_count: " << sp2.use_count() << std::endl;
 
     // 3. shared_ptr for arrays
     // pointer to array of objects
-    // std::shared_ptr<Base[]> sp3(new Base[3]);
-    // sp3[0].speak(); // indexing sp3[0] gets actual object
-    // sp3[1].speak();
-    // sp3[2].speak();
+    std::shared_ptr<Base[]> sp3(new Base[3]);
+    sp3[0].speak(); // indexing sp3[0] gets actual object
+    sp3[1].speak();
+    sp3[2].speak();
 
     // // 4. Atomic operations
-    // std::shared_ptr<Base> sp4 = std::make_shared<Base>();
-    // std::shared_ptr<Base> sp5;
+    std::shared_ptr<Base> sp4 = std::make_shared<Base>();
+    std::shared_ptr<Base> sp5;
 
-    // std::thread t1([&]() {
-    //     std::atomic_store(&sp5, std::atomic_load(&sp4));
-    // });
+    std::thread t1([&]() {
+        std::atomic_store(&sp5, std::atomic_load(&sp4));
+    });
 
-    // std::thread t2([&]() {
-    //     std::atomic_store(&sp4, std::shared_ptr<Base>(nullptr));
-    // });
+    std::thread t2([&]() {
+        std::atomic_store(&sp4, std::shared_ptr<Base>(nullptr));
+    });
 
-    // t1.join();
-    // t2.join();
+    t1.join();
+    t2.join();
 
-    // if (sp5) {
-    //     sp5->speak();
-    // }
+    if (sp5) {
+        sp5->speak();
+    }
 }
 
 //-------------------------------------------------------------------------

@@ -190,6 +190,9 @@ void playground() {
     std::array<int, 3> abc = {1,2,3};//#include array
     //abc.front();
     cout << "abc back: " << abc.back() << endl;
+
+    // Array of pointers
+    int** name = new int*[10];
 }
 
 void mut_ref() {

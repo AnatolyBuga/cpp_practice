@@ -8,3 +8,4 @@ int square(int);
 void mut_ref();
 void playground();
 void openmp_tut();
+void ranges_playground();

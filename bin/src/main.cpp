@@ -24,6 +24,7 @@ int main() {
   // mut_ref();
   // new_operator();
   // tenor_operator_ordered();
+  ranges_playground();
 
   // udfslib mylib;
   // mylib.print();
@@ -35,5 +36,5 @@ int main() {
   // run_fin();
   // run_subarrmaxsum();
   // run_max_profit();
-  openmp_tut();
+  // openmp_tut();
 }
