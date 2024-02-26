@@ -7,6 +7,7 @@ project(INTERVIEWS LANGUAGES CXX)
 set(SOURCES
     src/queue.cpp
     src/move.cpp
+    src/anagrams.cpp
 )
 
 add_library(${PROJECT_NAME} ${SOURCES})
