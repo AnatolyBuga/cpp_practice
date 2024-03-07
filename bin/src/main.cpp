@@ -8,6 +8,7 @@
 #include "interviews/fib.hpp"
 #include "interviews/subarr_maxsum.hpp"
 #include "interviews/max_profit.hpp"
+#include "cmakeConfig.hpp" // see target_include_directories in CMAKE
 
 // #define DEBUG see -DDEBUG
 // namespace defines a space for particular function names
@@ -20,11 +21,14 @@ int main() {
         cout << "DEBUGGING"<< endl;
   #endif
   std::cout << "Anatoly says Hello, C++ " << __cplusplus << std::endl;
+  std::cout << "FIRST Version " << FIRST_VERSION_MAJOR << "." << FIRST_VERSION_MINOR << std::endl;
   // playground();
   // mut_ref();
   // new_operator();
   // tenor_operator_ordered();
-  ranges_playground();
+  // ranges_playground();
+
+  new_playground();
 
   // udfslib mylib;
   // mylib.print();
@@ -37,4 +41,5 @@ int main() {
   // run_subarrmaxsum();
   // run_max_profit();
   // openmp_tut();
+  
 }

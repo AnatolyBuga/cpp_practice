@@ -19,12 +19,14 @@ constexpr void expect(C cond, Error_code x) // take "action" if the expected con
     // or no action
 }
 
-class ChildVec : public MyVector{
-    auto operator[](int i) -> double&;
+template<typename T>
+class ChildVec : public MyVector<T>{
+    auto operator[](int i) -> T&;
 };
 
-double& ChildVec::operator[](int i)
+template<typename T>
+T& ChildVec<T>::operator[](int i)
 {
-    expect([i,this]() { return 0<=i && i<size(); }, Error_code::range_error);
-    return elem[i];
+    expect([i,this]() { return 0<=i && i<ChildVec::size(); }, Error_code::range_error);
+    return this->elem[i];
 }

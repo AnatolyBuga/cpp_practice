@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.24)
 
 project(INTERVIEWS LANGUAGES CXX)
 
@@ -8,6 +8,7 @@ set(SOURCES
     src/queue.cpp
     src/move.cpp
     src/anagrams.cpp
+    src/new.cpp
 )
 
 add_library(${PROJECT_NAME} ${SOURCES})

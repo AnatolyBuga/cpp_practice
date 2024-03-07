@@ -2,6 +2,7 @@
 #include <vector>
 
 void anagrams_playground();
+void new_playground();
 
 int fib_n(const int n) {
     if (n<=1) return n;

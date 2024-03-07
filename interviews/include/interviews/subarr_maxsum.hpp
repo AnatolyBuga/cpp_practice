@@ -5,7 +5,7 @@
 // int*& start_ptr, int*& end_ptr
 std::vector<int> maxSubarr(const std::vector<int>& nums) {
     int max_sum = nums[0];
-    int current_sum = nums[0]; // either prev element or sum of last X elems
+    int current_sum = nums[0]; // either prev element or sum of last X elems(as long as current sum is > 0)
     int start_index = 0, end_index = 0, temp_start_index = 0;
 
     for (int i = 1; i < nums.size(); ++i) {
