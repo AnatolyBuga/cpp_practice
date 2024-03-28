@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>") 
 set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 add_compile_options(-std=c++23 -fopenmp)
+# enable testing
+enable_testing() # order matters
+
 add_subdirectory(bin)
 add_subdirectory(udfs)
 add_subdirectory(interviews)

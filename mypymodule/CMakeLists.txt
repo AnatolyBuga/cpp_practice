@@ -4,10 +4,10 @@ add_library(mymodule MODULE
 )
 
 # Link Python library
-target_link_libraries(mymodule
-    PRIVATE
-    ${PYTHON_LIBRARIES}
-)
+# target_link_libraries(mymodule
+#     PRIVATE
+#     ${PYTHON_LIBRARIES}
+# )
 
 # Set Python module suffix for Windows
 if(WIN32)
@@ -29,4 +29,4 @@ set_target_properties(mymodule PROPERTIES
 )
 
 # Installation
-install(TARGETS mymodule DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/site-packages)
+install(TARGETS mymodule DESTINATION ${PROJECT_SOURCE_DIR}/.venv/lib/site-packages)

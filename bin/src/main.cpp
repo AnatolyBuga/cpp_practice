@@ -18,7 +18,7 @@
 // and we can write our own funcA
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
   #ifdef DEBUG
         cout << "DEBUGGING"<< endl;
   #endif

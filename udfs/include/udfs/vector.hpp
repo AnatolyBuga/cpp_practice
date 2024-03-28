@@ -35,8 +35,8 @@ enum class MyError
 template<typename T>
 class Container {
     public:
-        virtual T& operator[](T) = 0; // pure virtual function
-        virtual int size() const = 0; // const member function 
+        virtual T& operator[](int i) const = 0; // pure virtual function, MUST be overriden
+        virtual int size() const = 0; // const member function(cannot change Class), MUST be overriden
         virtual ~Container() {} // destructor (§5.2.2)
 };
 
@@ -49,7 +49,7 @@ public:
     // default: https://stackoverflow.com/questions/20828907/the-new-syntax-default-in-c11
     // MyVector(int s) :elem{new double[s]}, sz{s} { std::cout << "Default constructor called" << std::endl; } // construct a Vector
     // virtual methods https://stackoverflow.com/questions/2391679/why-do-we-need-virtual-functions-in-c
-    explicit MyVector(int s); // int to vec conversion, explicit means MyVector v = 7 is an error
+    explicit MyVector(int s); // int to vec conversion, explicit means MyVector v = 7 is an error, MyVector v1(7) is ok
     MyVector(std::initializer_list<double>); // initialise with {}
 
     MyVector(const MyVector& a); // copy constructor
@@ -62,7 +62,7 @@ public:
     MyVector(MyVector&& a); //move constructor
     MyVector& operator=(MyVector&& a); //move assignment
 
-    auto operator[](int i) -> T& override { 
+    T& operator[](int i) const override {// this not allowed due to not allowed auto and const mix: auto operator[](int i) -> T& const override { 
         if (i<0 || i>size()) throw std::out_of_range{"Anatoly's Vector operator []"};
         return elem[i];
         } // element access: subscripting

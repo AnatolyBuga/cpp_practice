@@ -13,7 +13,7 @@ set(EXCLUDED_FILE "src/optional/my_sqrt.cpp")
 list(REMOVE_ITEM PROJECT_SOURCE_FILES ${EXCLUDED_FILE})
 
 # add the binary tree to the search path for include files
-# so that we will find TutorialConfig.h
+# so that we will find cmakeConfig.hpp
 configure_file(cmakeConfig.h.in cmakeConfig.hpp)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_FILES})
@@ -43,6 +43,7 @@ ENDIF()
 # cmake .. -DUSE_MY_SQRT=OFF
 # cmake --build .
 # bin/first.exe
+#  cmake --build . --target clean
 OPTION(USE_MY_SQRT "Use my own sqrt implementation" ON)
 if(USE_MY_SQRT)
   # If USE_MYMATH then USE_MYMATH_SQRT flag can be used in .cpp source files in #ifdef statement
@@ -57,6 +58,16 @@ if(USE_MY_SQRT)
   target_link_libraries(${PROJECT_NAME} PRIVATE SqrtLib)
 
 endif()
+
+# This essentially creates .exe file
+# similar to add_executable, but remember for this we need cmake --intall .
+set(installable_libs ${PROJECT_NAME})
+if(TARGET SqrtLib) # check is such target exists
+  list(APPEND installable_libs SqrtLib)
+endif()
+install(TARGETS ${installable_libs} DESTINATION ${CMAKE_BINARY_DIR}/install/lib)
+# install include headers - this only copies header files
+install(FILES include/lib.hpp DESTINATION ${CMAKE_BINARY_DIR}/install/include)
 
 # Example cuda
 # # Add a custom command to compile the CUDA source file
@@ -75,3 +86,17 @@ endif()
 #         target_compile_options(my_executable PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--gpu-architecture=compute_75>)
 #     endif()
 # endif()
+
+target_compile_options(${PROJECT_NAME} INTERFACE
+# wrap in build interface to see during builds only
+# note gcc_like_cxx is defined in top level 
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+)
+
+include(CTest)
+
+# does the application run
+add_test(NAME Runs COMMAND ${PROJECT_NAME} 25)
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND}
+                  DEPENDS Runs)

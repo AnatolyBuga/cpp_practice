@@ -4,6 +4,7 @@
 #include <stdexcept>
 //https://stackoverflow.com/questions/65384277/error-failed-to-read-compiled-module-no-such-file-or-directory
 #include "udfs/vector.hpp"
+#include <string>
 
 // export module MyVectorModule;
 
@@ -78,6 +79,13 @@ auto f2(MyVector<T> v) -> MyVector<T>
 {
     return v;
 }
+
+void write(const MyVector<std::string>& vs) // Vector of some strings
+{
+    for (int i = 0; i!=vs.size(); ++i)
+    std::cout << vs[i] << '\n';
+}
+
 
 
 

@@ -4,9 +4,19 @@ project(UDFS LANGUAGES CXX VERSION 3.1)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_compile_options(-std=c++23)
-
-# file(GLOB SOURCES src/*.cpp) <- this didn't work
+# Creating library
+add_library(udfs_compiler_flags INTERFACE)
+target_compile_features(udfs_compiler_flags INTERFACE cxx_std_23)
+# Compiler warnings, note this propagates to the executable
+# and (why?) to all it's other linked libraries
+target_compile_options(udfs_compiler_flags INTERFACE
+#   "$<${gcc_like_cxx}:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>"
+#   "$<${msvc_cxx}:-W3>"
+# wrap in build interface to see during builds only (but actually works same as above)
+# note gcc_like_cxx is defined in top level 
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+)
 
 set(SOURCES
     src/vector.cpp
@@ -24,18 +34,8 @@ target_include_directories( ${PROJECT_NAME}
     PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
 
-# Creating library
-add_library(udfs_compiler_flags INTERFACE)
-target_compile_features(udfs_compiler_flags INTERFACE cxx_std_23)
-# Compiler warnings, note this propagates to the executable
-target_compile_options(udfs_compiler_flags INTERFACE
-#   "$<${gcc_like_cxx}:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>"
-#   "$<${msvc_cxx}:-W3>"
-# wrap in build interface to see during builds only
-# note gcc_like_cxx is defined in top level 
-  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
-  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
-)
+
+
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
