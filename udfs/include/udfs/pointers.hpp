@@ -201,17 +201,17 @@ void WeakPtrDemo()
 }
 
 void MutCond() {
-    std::mutex(mu); //Global variable or place within class
+    std::mutex mu; //Global variable or place within class
     std::condition_variable condition; //A signal that can be used to communicate between functions
 
-    auto MyFunction = [&]() { 
+    auto _MyFunction = [&]() { 
         std::unique_lock<std::mutex> lock(mu);
         //Do Stuff
         lock.unlock(); //Unlock the mutex
         condition.notify_one(); //Notify MyOtherFunction that this is done
         };
 
-    auto MyOtherFunction = [&]() {
+    auto _MyOtherFunction = [&]() {
         std::unique_lock<std::mutex> lock(mu);
         condition.wait(lock); //Wait for MyFunction to finish, a lambda can be passed also to protects against spurious wake up e.g (lock,[](){return *some condition*})
         lock.unlock(); // might not be needed since unique lock 

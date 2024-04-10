@@ -51,6 +51,7 @@ MyVector<T>& MyVector<T>::operator=(const MyVector& a) {
     sz = a.sz;
     return *this;
 }
+
 template<typename T>
 MyVector<T>::MyVector(MyVector&& a): elem{a.elem}, sz{a.sz} {
     std::cout << "Move constructor" << std::endl;
@@ -84,6 +85,16 @@ void write(const MyVector<std::string>& vs) // Vector of some strings
 {
     for (int i = 0; i!=vs.size(); ++i)
     std::cout << vs[i] << '\n';
+}
+template<typename T>
+auto end(MyVector<T>& x) -> T* {return &x[0] + x.size();}
+template<typename T>
+auto begin(MyVector<T>& x) -> T* {return &x[0];}
+
+void write2(MyVector<std::string>& vs) // Vector of some strings
+{
+    for (auto& s: vs) 
+        std::cout << s << '\n';
 }
 
 
@@ -123,6 +134,11 @@ void vector_playground() {
 
     std::cout << "before ffffffffff22222222" << std::endl;
     f2(v3); // copy, then move
-    std::cout << "before ffffffffff22222222 with move" << std::endl;
-    f2(std::move(v3));
+    // std::cout << "before ffffffffff22222222 with move" << std::endl;
+    // f2(std::move(v3));
+
+    std::cout << "iterating over my vec" << std::endl;
+    for (auto i:v3) {
+        std::cout << i << std::endl;
+    }
 }

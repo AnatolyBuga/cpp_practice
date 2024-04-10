@@ -9,3 +9,7 @@ void mut_ref();
 void playground();
 void openmp_tut();
 void ranges_playground();
+void concepts_playground();
+void templs_playground();
+
+template <class F> auto finally(F f);

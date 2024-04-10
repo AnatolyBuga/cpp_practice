@@ -29,8 +29,10 @@ int main(int argc, char* argv[]) {
   // new_operator();
   // tenor_operator_ordered();
   // ranges_playground();
-  run_mymath();
+  // run_mymath();
   // new_playground();
+  // concepts_playground();
+  templs_playground();
 
   // udfslib mylib;
   // mylib.print();

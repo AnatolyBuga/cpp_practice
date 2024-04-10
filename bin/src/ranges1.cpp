@@ -3,7 +3,6 @@
 #include <ranges>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 // view doesn't own element
 //range owns elements
