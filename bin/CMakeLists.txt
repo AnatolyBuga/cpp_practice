@@ -46,6 +46,7 @@ ENDIF()
 #  cmake --build . --target clean
 OPTION(USE_MY_SQRT "Use my own sqrt implementation" ON)
 if(USE_MY_SQRT)
+  message("Using My SQRT")
   # If USE_MYMATH then USE_MYMATH_SQRT flag can be used in .cpp source files in #ifdef statement
   target_compile_definitions(${PROJECT_NAME} PRIVATE "USE_MY_SQRT")
 
@@ -56,7 +57,8 @@ if(USE_MY_SQRT)
 
   # link the library
   target_link_libraries(${PROJECT_NAME} PRIVATE SqrtLib)
-
+else()
+  message("Not Using My SQRT")
 endif()
 
 # This essentially creates .exe file

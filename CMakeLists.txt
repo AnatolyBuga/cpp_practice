@@ -1,5 +1,21 @@
 cmake_minimum_required(VERSION 3.24)
 project(BOOK LANGUAGES CXX VERSION 1.0) # prject name
+
+# It seems those get overriden below for OpenMP
+set(CMAKE_C_COMPILER "C:\\msys64\\mingw64\\bin\\gcc.exe")
+set(CMAKE_CXX_COMPILER "C:\\msys64\\mingw64\\bin\\g++.exe")
+
+set(CMAKE_AR "gcc-ar")
+set(CMAKE_LINKER "gcc-ld")
+
+if (MSVC)
+    message("USING MSVC COMPILER")
+    add_compile_options(/Zc:__cplusplus)
+endif()
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # does not produce the json file
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 # set gcc_like_cxx to true if compiler is any fo those

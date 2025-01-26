@@ -9,6 +9,7 @@ set(SOURCES
     src/move.cpp
     src/anagrams.cpp
     src/new.cpp
+    src/frogjump.cpp
 )
 
 add_library(${PROJECT_NAME} ${SOURCES})

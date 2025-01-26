@@ -67,5 +67,8 @@ void templs_playground(){
 
     test_assignable<float>();
 
+    if constexpr(Assignable<int&,double>)
+        std::cout << "Compile time if \n";
+
 }
 
